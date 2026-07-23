@@ -21,30 +21,30 @@ namespace backend2.Models{
         public string InvoiceNumber{get;set}=string.Empty;
 
         [BsonElement("partyId")]
-        public string PartyId{get;set}=string.Empty;
+        public string PartyId{get;set; }=string.Empty;
 
         [BsonElement("partyName")]
-        public string PartyName{get;set}=string.Empty;
+        public string PartyName{get;set; }=string.Empty;
 
         [BsonElement("partyPhone")]
-        public string PartyPhone{get;set}=string.Empty;
+        public string PartyPhone{get;set; }=string.Empty;
 
         [BsonElement("partyGstin")]
-        public string PartyGstin{get;set}=string.Empty;
+        public string PartyGstin{get;set; }=string.Empty;
         
         [BsonElement("items")]
-        public List<InvoiceItem> Items{get;set}=new List<InvoiceItem>();
+        public List<InvoiceItem> Items{get;set; }=new List<InvoiceItem>();
 
         [BsonElement("subTotal")]
-        public decimal SubTotal{get;set}=0m;
+        public decimal SubTotal{get;set; }=0m;
 
         [BsonElement("gst")]
-        public decimal Gst{get;set}=0m;
+        public decimal Gst{get;set; }=0m;
 
         [BsonElement("grandTotal")]
-        public decimal GrandTotal{get;set}=0m;
+        public decimal GrandTotal{get;set; }=0m;
 
-        public DateTime InvoiceDate{get;set}=DateTime.UtcNow;
+        public DateTime InvoiceDate{get;set; }=DateTime.UtcNow;
 
         
 
