@@ -14,7 +14,7 @@ namespace backend2.Data{
 
         }
 
-        public IMongoCollection<Party> Parties => _database.GetCollection<Party> ("Parties"); //ye crud krte h us particular table pe 
+        public IMongoCollection<Party> Parties => _database.GetCollection<Party> ("Parties"); 
 
         public IMongoCollection<Product> Products => _database.GetCollection<Product>("Products");
 
