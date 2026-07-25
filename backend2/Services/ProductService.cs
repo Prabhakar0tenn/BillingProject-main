@@ -41,6 +41,8 @@ namespace backend2.Services{
 
             var result=await _context.Products.UpdateOneAsync(x=>x.Id==id,new UpdateDefinitionBuilder<Product>().Inc(x=>x.Stock,stock));   
             return result.ModifiedCount>0;
-        }
-    }
+        }   
+
+        
+    } 
 }

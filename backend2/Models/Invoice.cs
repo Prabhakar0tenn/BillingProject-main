@@ -18,7 +18,7 @@ namespace backend2.Models{
         
 
         [BsonElement("invoiceNumber")]
-        public string InvoiceNumber{get;set}=string.Empty;
+        public string InvoiceNumber{get;set; }=string.Empty;
 
         [BsonElement("partyId")]
         public string PartyId{get;set; }=string.Empty;

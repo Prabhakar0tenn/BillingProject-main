@@ -16,7 +16,9 @@ namespace backend2.Services{
          }
 
          public async Task<Party?> GetPartyByIdAsync(string id){
-
+            if(string.IsNullOrEmpty(id)){
+                return null;
+            }
             return await _context.Parties.Find(x=> x.Id==id).FirstOrDefaultAsync();
  
          }

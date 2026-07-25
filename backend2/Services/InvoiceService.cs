@@ -100,9 +100,9 @@ namespace backend2.Services{
  
         }
 
-        public async Task<bool> DeleteInvoiceAsync(string id){
-            DeleteResult result= await _context.Invoices.DeleteOneAsync(x=>x.Id==id);
-            return result.DeletedCount>0;
-        }
+        // public async Task<bool> DeleteInvoiceAsync(string id){
+        //     DeleteResult result= await _context.Invoices.DeleteOneAsync(x=>x.Id==id);
+        //     return result.DeletedCount>0;
+        // }
     }
 }
