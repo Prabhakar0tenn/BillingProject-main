@@ -1,6 +1,7 @@
 using backend2.Models;
 using backend2.Data;
 using MongoDB.Driver;
+using backend2.DTOs;
 
 
 namespace backend2.Services{
@@ -24,10 +25,18 @@ namespace backend2.Services{
          }
 
 
-         public async Task<Party>CreatePartyAsync(Party party){
+         public async Task<Party>CreatePartyAsync(PartyDto party){
 
-            await _context.Parties.InsertOneAsync(party);
-            return party;
+            var newParty=new Party{
+                PartyName=party.partyname,
+                Phone=party.Phone,
+                Gstin=party.Gstin,
+                Address=party.address,
+                CreatedAt=DateTime.Now,  
+            };
+
+            await _context.Parties.InsertOneAsync(newParty);
+            return newParty;
 
             
          }
@@ -41,7 +50,7 @@ namespace backend2.Services{
           
          }
 
-        //   public Task<List<Party>> UpdatePartyAsync(string id){  //leave for now
+        //   public Task<List<Party>> UpdatePartyAsync(string id){  
 
 
             

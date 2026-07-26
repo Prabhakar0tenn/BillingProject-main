@@ -1,4 +1,5 @@
 using backend2.Services;
+using backend2.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend2.Controllers{
@@ -46,7 +47,7 @@ namespace backend2.Controllers{
 
         [HttpPost]
 
-        public async Task<IActionResult> CreateInvoiceAsync(CreateInvoiceRequestDto request){
+        public async Task<IActionResult> CreateInvoiceAsync([FromBody] CreateInvoiceRequestDto request){
 
             try{
                 var created = await _invoiceService.CreateInvoiceAsync(request);

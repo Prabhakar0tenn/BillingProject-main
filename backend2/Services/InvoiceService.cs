@@ -1,6 +1,7 @@
 using backend2.Models;
 using backend2.Data;
 using MongoDB.Driver;
+using backend2.DTOs;
 
 
 namespace backend2.Services{
@@ -35,7 +36,7 @@ namespace backend2.Services{
                 {
                     throw new InvalidOperationException("Party not found");
                 }
-            string partyname= party.Name;
+            string partyname= party.PartyName;
             string partyid= invoiceRequest.PartyId;
 
             string partyphone= party.Phone;

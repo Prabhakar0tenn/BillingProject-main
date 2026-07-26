@@ -1,5 +1,5 @@
 using backend2.Services;
-using backend2.Modals;
+using backend2.Models;
 using backend2.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +28,7 @@ namespace backend2.Controllers{
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePartyAsync([FromBody] CreatePartyDTO party){
+        public async Task<IActionResult> CreatePartyAsync([FromBody] PartyDto party){
 
             try{
                 var createdParty= await _partyService.CreatePartyAsync(party);

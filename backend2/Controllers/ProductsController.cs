@@ -1,6 +1,7 @@
 using backend2.DTOs;
+using backend2.Models;
 using backend2.Services;
-using Microsoft.AspNetCore.MVC;
+using Microsoft.AspNetCore.Mvc;
 
 
 
@@ -42,7 +43,7 @@ namespace backend2.Controllers{
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProductAsync([FromBody]CreateProductDTOs product){
+        public async Task<IActionResult> CreateProductAsync([FromBody]ProductDto product){
             try{
                 var created=await _productService.CreateProductAsync(product);
 
@@ -74,6 +75,25 @@ namespace backend2.Controllers{
 
                  if(updated){return Ok("Product stock updated");}
                  else{return NotFound("product not found");}
+            }
+            catch(Exception e){
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("{id}/price")]
+        public async Task<IActionResult> UpdateProductPriceAsync([FromRoute] string id, [FromBody] decimal newPrice){
+            try{
+
+                var updated= await _productService.UpdateProductPriceAsync(id,newPrice);
+
+                if(updated){
+                    return Ok("Product price updated");
+                }
+                else{
+                    return NotFound("Product not found");
+                }
+
             }
             catch(Exception e){
                 return BadRequest(e.Message);

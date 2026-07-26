@@ -1,6 +1,7 @@
 using backend2.Models;
 using MongoDB.Driver;
 using backend2.Data;
+using backend2.DTOs;
 
 namespace backend2.Services{
     public class ProductService:IProductService{
@@ -27,7 +28,14 @@ namespace backend2.Services{
 
             return result.DeletedCount>0;
         }
-       public async  Task<Product> CreateProductAsync(Product product){
+       public async  Task<Product> CreateProductAsync(ProductDto productdto){
+
+            var product=new Product{
+                Name=productdto.name,
+                Price=productdto.price,
+                Stock=productdto.stock,
+                CreatedAt=DateTime.UtcNow
+            };
             await _context.Products.InsertOneAsync(product);
             return product;
         }
@@ -42,6 +50,16 @@ namespace backend2.Services{
             var result=await _context.Products.UpdateOneAsync(x=>x.Id==id,new UpdateDefinitionBuilder<Product>().Inc(x=>x.Stock,stock));   
             return result.ModifiedCount>0;
         }   
+
+        public async Task<bool> UpdateProductPriceAsync(string id, decimal newPrice){
+            var product = await _context.Products.Find(x=> x.Id==id).FirstOrDefaultAsync();
+            if(product==null){
+                return false;
+            }
+            product.Price=newPrice;
+            await _context.Products.ReplaceOneAsync(x=> x.Id==id,product);
+            return true;
+        }
 
         
     } 

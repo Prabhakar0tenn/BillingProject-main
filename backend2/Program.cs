@@ -16,6 +16,9 @@ builder.Services.AddScoped<IPartyService, PartyService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 
 
 builder.Services.AddCors(options =>
@@ -43,5 +46,8 @@ app.UseAuthorization();
 
 
 app.MapControllers();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
