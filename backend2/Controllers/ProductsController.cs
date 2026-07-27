@@ -71,6 +71,9 @@ namespace backend2.Controllers{
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProductStockAsync([FromRoute] string id, [FromBody]int stock){
             try{
+                if (stock < 0) {
+                    return BadRequest("Stock cannot be negative");
+                }
                 var updated = await _productService.UpdateProductStockAsync( id,stock );
 
                  if(updated){return Ok("Product stock updated");}
@@ -84,6 +87,9 @@ namespace backend2.Controllers{
         [HttpPut("{id}/price")]
         public async Task<IActionResult> UpdateProductPriceAsync([FromRoute] string id, [FromBody] decimal newPrice){
             try{
+                if (newPrice <= 0) {
+                    return BadRequest("Price must be greater than 0");
+                }
 
                 var updated= await _productService.UpdateProductPriceAsync(id,newPrice);
 
