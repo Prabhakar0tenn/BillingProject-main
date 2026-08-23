@@ -21,31 +21,12 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      # =========================
-      # BillingSystem
-      # =========================
-
-      - name: Restore BillingSystem
-        run: dotnet restore BillingSystem.csproj
-
-      - name: Build BillingSystem
-        run: dotnet build BillingSystem.csproj --no-restore
-
-      - name: Test BillingSystem
-        run: dotnet test BillingSystem.csproj --no-build --verbosity normal
-
-      # =========================
-      # Backend2
-      # =========================
-
-      - name: Restore Backend2
-        run: dotnet restore backend2/backend2.csproj
-
-      - name: Build Backend2
-        run: dotnet build backend2/backend2.csproj --no-restore
-
-      - name: Test Backend2
-        run: dotnet test backend2/backend2.csproj --no-build --verbosity normal
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
 
       # =========================
       # AutoHeal Callback
